@@ -183,7 +183,7 @@
                 </div>
                 <div class="form-campo">
                     <label for="veiculo-interesse">Veículo de interesse:</label>
-                    <input type="text" id="veiculo-interesse" name="veiculo-interesse" >
+                    <input type="text" id="veiculo-interesse" name="veiculoDeInteresse" >
                 </div>
                 <div class="form-campo">
                     <label for="mensagem">Mensagem:</label>
@@ -223,6 +223,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="./js/jquery.mask.min.js"></script>
     <script src="./js/jquery.validate.min.js"></script>
+    <script src="./js/messages_pt_BR.min.js"></script>
 
 
 
@@ -241,7 +242,7 @@
             placeholder: '(99)98199-9999'
         })
 
-        $('#form').validate({
+        $('form').validate({
             rules: {
                 nome: {
                     required: true
@@ -249,11 +250,43 @@
                 email: {
                     required: true
                 },
-                telefone:  {
+                telefone: {
                     required: true
+                },
+                mensagem: {
+                    required: true
+                },
+                veiculoDeInteresse: {
+                    required: false
+            }
+            
+        },
+
+            messages: {
+                nome: 'Por favor, insira seu nome'
+            },
+            messages: {
+                telefone: 'Por favor, insira seu telefone'
+            },
+            messages: {
+                email: 'Por favor, insira seu email'
+            },
+            messages: {
+                mensagem: 'Por favor, insira sua mensagem'
+            },
+
+            submitHandler: function(form) {
+                console.log(form)
+            },
+            invalidHandler: function(evento, validador) {
+                let camposIncorretos = validador.numberOfInvalids();
+                if (camposIncorretos) {
+                    alert(`Existem ${camposIncorretos} campos incorretos`)
                 }
             }
+
         })
+
 
     })
     </script>
